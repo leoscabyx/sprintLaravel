@@ -12,5 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('inicio');
 });
+
+Route::get('/admin', function () {
+    return view('admin');
+});
+
+
+Route::get('/productos', 'ProductosController@index');
+
+Route::get('/producto/{id}', 'ProductosController@show');
