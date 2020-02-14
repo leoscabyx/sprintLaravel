@@ -22,4 +22,11 @@ Route::get('/admin', function () {
 
 Route::get('/productos', 'ProductosController@index');
 
+Route::get('/adminProductos', 'ProductosController@index');
+
 Route::get('/producto/{id}', 'ProductosController@show');
+
+
+Route::get('/categorias', 'CategoriasController@index');
+
+Route::get('/adminCategorias', 'CategoriasController@index');

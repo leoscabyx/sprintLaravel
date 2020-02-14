@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Producto;
+use App\Categoria;
 
-class ProductosController extends Controller
+class CategoriasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class ProductosController extends Controller
     public function index()
     {
         //
-        $productos = Producto::paginate(10);
-        return view('adminProductos', [ 'productos' => $productos ]);
+        $categorias = Categoria::paginate(10);
+        return view('adminCategorias', [ 'categorias' => $categorias ]);
     }
 
     /**
@@ -50,8 +50,6 @@ class ProductosController extends Controller
     public function show($id)
     {
         //
-        $producto = Producto::find($id);
-        return view('detalle', [ 'producto' => $producto ]);
     }
 
     /**

@@ -21,14 +21,23 @@
                                             <div class="card-body">
                                               <h4 class="card-title">{{ $producto->nombre }}</h4>
                                               
-                                              <a href="/producto/{{ $producto->idProducto }}" class="btn bg-color1 text-white">VER DETALLEs</a>
+                                              <a href="/producto/{{ $producto->idProducto }}" class="btn bg-color1 text-white">VER DETALLE</a>
                                             </div>
                                         </div>
                                 </div>
                         @endforeach
+
+                       
+
                         @endif
-                                    
+                                  
                 </div>
+                <div class="row my-3">
+                         <div class="col-md-12">
+                         {{ $productos->links() }}
+                         </div>
+                         </div>  
+                
             </div>
     </div>
 
