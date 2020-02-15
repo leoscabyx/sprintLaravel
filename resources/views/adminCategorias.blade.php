@@ -21,7 +21,38 @@
                                 <th>id</th>
                                 <th>categoria</th>
                                 <th colspan="2">
-                                    <a href="/formAgregarCategoria" class="btn btn-dark">Agregar</a>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+                                Agregar
+                            </button>
+    
+                    <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Agregar categoria</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                    <form action="/adminCategorias" method="POST">
+                                        @csrf
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre de Categoria</label>
+                                        <input type="text" class="form-control" name="nombre" id="nombre" value="" placeholder="Ingresá una nueva categoria">    
+                                    </div>
+                
+                
+                                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-dark">Guardar cambios</button>
+                                    </form>
+                                    </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
                                 </th>
                             </tr>
                             </thead>
@@ -31,14 +62,74 @@
                                 <td>{{$categoria->idCategoria}}</td>
                                 <td>{{$categoria->nombre}}</td>
                                 <td>
-                                    <a href="" class="btn btn-outline-secondary">
-                                        Modificar
-                                    </a>
+                                           <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalMod{{$categoria->nombre}}{{$categoria->idCategoria}}">
+                                Modificar
+                            </button>
+    
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalMod{{$categoria->nombre}}{{$categoria->idCategoria}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modificar categoria</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                            <form action="{{action('CategoriasController@update')}}" method="POST">
+                                @csrf
+                            <div class="form-group">
+                                <label for="nombre">Nombre de Categoria</label>
+                                <input type="text" name="idCategoria" value="{{$categoria->idCategoria}}" class="form-control" style="display:none">
+                                <input type="text" class="form-control" name="nombre" id="nombre" value="{{$categoria->nombre}}" placeholder="">    
+                            </div>
+        
+        
+                            <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-dark">Editar cambios</button>
+                            </form>
+                            </div>
+                            
+                            </div>
+                        </div>
+                    </div>
                                 </td>
                                 <td>
-                                    <a href="" class="btn btn-outline-secondary">
-                                        Eliminar
-                                    </a>
+                                                    <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalElim{{$categoria->nombre}}{{$categoria->idCategoria}}">
+                                Eliminar
+                            </button>
+    
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalElim{{$categoria->nombre}}{{$categoria->idCategoria}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Eliminar categoria</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                            <form action="{{action('CategoriasController@destroy')}}" method="POST">
+                                @csrf
+                            <div class="form-group">
+                                <label for="nombre">¿Estas seguro que deseas borrar la categoria {{$categoria->nombre}}?</label>
+                                <input type="text" name="idCategoria" value="{{$categoria->idCategoria}}" class="form-control" style="display:none">
+                                <input type="text" class="form-control" name="nombre" id="nombre" value="{{$categoria->nombre}}" placeholder="" style="display:none">    
+                            </div>
+        
+        
+                            <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-danger">Borrar</button>
+                            </form>
+                            </div>
+                            
+                            </div>
+                        </div>
+                    </div>
                                 </td>
                             </tr>
                         @endforeach

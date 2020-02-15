@@ -38,7 +38,13 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoriaNueva = new Categoria();
+
+        $categoriaNueva->nombre = $request["nombre"];
+
+        $categoriaNueva->save();
+
+        return redirect("/adminCategorias");
     }
 
     /**
@@ -70,9 +76,16 @@ class CategoriasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
+        $catEditada = Categoria::find($request["idCategoria"]);
+
+        $catEditada->nombre = $request["nombre"];
+
+        $catEditada->save();
+
+        return redirect("/adminCategorias");
     }
 
     /**
@@ -81,8 +94,11 @@ class CategoriasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $catBorrada = Categoria::find($request["idCategoria"]);
+
+        $catBorrada->delete();
+        return redirect("/adminCategorias");
     }
 }

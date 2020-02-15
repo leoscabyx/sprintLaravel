@@ -30,3 +30,9 @@ Route::get('/producto/{id}', 'ProductosController@show');
 Route::get('/categorias', 'CategoriasController@index');
 
 Route::get('/adminCategorias', 'CategoriasController@index');
+
+Route::post('/adminCategorias', 'CategoriasController@store');
+
+Route::post('/editCategorias', 'CategoriasController@update');
+
+Route::post('/borrarCategorias', 'CategoriasController@destroy');

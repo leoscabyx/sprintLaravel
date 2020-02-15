@@ -71,3 +71,7 @@ body {
     max-height: 200px;
     background-color: #303030;
 }
+
+th div#exampleModal.modal.fade.show div.modal-dialog div.modal-content {
+    color: black;
+} 
