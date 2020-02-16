@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Producto;
+use App\Categoria;
 
 class ProductosController extends Controller
 {
@@ -17,7 +18,8 @@ class ProductosController extends Controller
     {
         //
         $productos = Producto::paginate(10);
-        return view('adminProductos', [ 'productos' => $productos ]);
+        $categorias = Categoria::paginate(10);
+        return view('adminProductos', [ 'productos' => $productos, 'categorias' => $categorias]);
     }
 
     /**
@@ -38,7 +40,24 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $productoNuevo = new Producto();
+
+        $ruta = $request->file("imagen")->store("public");
+        $nombreArchivo = basename($ruta);
+
+        $productoNuevo->nombre = $request["nombre"];
+        $productoNuevo->precio = $request["precio"];
+        $productoNuevo->idCategoria = $request["categoria"];
+        $productoNuevo->descripcion = $request["descripcion"];
+        $productoNuevo->estado = $request["estado"];
+        $productoNuevo->imagen = $nombreArchivo;
+
+
+
+
+        $productoNuevo->save();
+
+        return redirect("/adminProductos");
     }
 
     /**

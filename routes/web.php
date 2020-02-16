@@ -36,3 +36,9 @@ Route::post('/adminCategorias', 'CategoriasController@store');
 Route::post('/editCategorias', 'CategoriasController@update');
 
 Route::post('/borrarCategorias', 'CategoriasController@destroy');
+
+Route::post('/adminProductos', 'ProductosController@store');
+
+Route::post('/editProductos', 'ProductosController@update');
+
+Route::post('/borrarProductos', 'ProductosController@destroy');

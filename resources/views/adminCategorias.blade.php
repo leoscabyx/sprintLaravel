@@ -8,7 +8,7 @@
     <div class="container">
             <div class="row mt-3">
                 <div class="col-md-12 py-5">
-                        <h2 class="text-uppercase ff_titulo">NUESTROS CATEGORIAS <strong class="color1">COCOLO!</strong></h2>
+                        <h2 class="text-uppercase ff_titulo">NUESTRAS CATEGORIAS <strong class="color1">COCOLO!</strong></h2>
                         <hr class="bg-color1">
                         <div class="row">
                         <div class="col-md-12">
@@ -22,7 +22,8 @@
                                 <th>categoria</th>
                                 <th colspan="2">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+                            <button type="button" class="btn btn-outline-light px-4" data-toggle="modal" data-target="#exampleModal">
+                                <i class="far fa-plus-square fa-lg mr-2"></i>
                                 Agregar
                             </button>
     
@@ -64,6 +65,7 @@
                                 <td>
                                            <!-- Button trigger modal -->
                             <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalMod{{$categoria->nombre}}{{$categoria->idCategoria}}">
+                                <i class="far fa-edit fa-lg mr-2"></i>
                                 Modificar
                             </button>
     
@@ -99,6 +101,7 @@
                                 <td>
                                                     <!-- Button trigger modal -->
                             <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalElim{{$categoria->nombre}}{{$categoria->idCategoria}}">
+                                <i class="far fa-minus-square fa-lg mr-2"></i>
                                 Eliminar
                             </button>
     
