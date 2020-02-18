@@ -110,16 +110,123 @@
                                             <img src="storage/{{$producto->imagen}}" style="width:50px; height:50px;" class="img-thumbnail" alt="imagenDeProducto">
                                             </td>
                                             <td>
-                                                <a href="/formEditarProducto/{{ $producto->idProducto }}" class="btn btn-outline-secondary px-4">
-                                                    <i class="far fa-edit fa-lg mr-2"></i>
+                                                <?php $producto->nombre  = str_replace(" ", "_", $producto->nombre); ?>
+                                                <?php $producto->descripcion  = str_replace(" ", "_", $producto->descripcion); ?>
+                                                 <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalMod{{ $producto->nombre }}{{$producto->precio}}{{$producto->idProducto}}{{ $producto->descripcion }}{{ $producto->getCategoria->nombre }}">
+                                             <i class="far fa-edit fa-lg mr-2"></i>
                                                     Modificar
-                                                </a>
+                                        </button>
+    
+                    <!-- Modal -->
+                            <div class="modal fade" id="exampleModalMod{{ $producto->nombre }}{{$producto->precio}}{{$producto->idProducto}}{{ $producto->descripcion }}{{ $producto->getCategoria->nombre }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modificar producto</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                    <form action="{{action('ProductosController@update')}}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre de producto</label>
+                                        <?php $producto->nombre  = str_replace("_", " ", $producto->nombre); ?>
+                                        <input type="text" name="idProducto" value="{{$producto->idProducto}}" class="form-control" style="display:none">
+                                        <input type="text" class="form-control" name="nombre" id="nombre" value="{{$producto->nombre}}" placeholder="Ingresá un nuevo producto">    
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nombre">Precio</label>
+                                        <input type="number" class="form-control" name="precio" id="nombre" value="{{$producto->precio}}" placeholder="Ingresá su precio">    
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nombre">Categoria</label>
+                                        <select id="inputState" class="form-control" name="categoria">
+                                            @foreach ($categorias as $categoria)
+                                                
+                                            <option <?php if($producto->idCategoria == $categoria->idCategoria) { ?>  selected   <?php } ?> value="{{ $categoria->idCategoria }}"{{--selected="{{ $producto->getCategoria->nombre }}"--}}>{{ $categoria->nombre }}</option>
+                                            
+                                             @endforeach
+                                          </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nombre">Descripcion</label>
+                                        <?php $producto->descripcion  = str_replace("_", " ", $producto->descripcion); ?>
+                                        <input type="text" class="form-control" name="descripcion" id="nombre" value="{{ $producto->descripcion }}" placeholder="Ingresá una descripcion">    
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nombre">Estado</label>
+                                        <select id="inputState" class="form-control" name="estado">
+                                            
+                                            @if ($producto->estado == 1)
+
+                                            <option selected value="1">Activo</option>
+                                            <option value="2">Inactivo</option>
+
+                                            @else
+                                            <option value="1">Activo</option>
+                                            <option selected value="2">Inactivo</option>
+                                            @endif
+
+                    {{--                        <option value="1">Activo</option>
+                                            <option value="2">Inactivo</option>
+                    --}}
+                                          </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nombre">Imagen</label>
+                                        <input type="file" class="form-control-file" name="imagen" id="exampleFormControlFile1">  
+                                    </div>
+                
+                
+                                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-dark">Guardar cambios</button>
+                                    </form>
+                                    </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
                                             </td>
                                             <td>
-                                                <a href="/formEliminarProducto/{{ $producto->idProducto }}" class="btn btn-outline-secondary px-4">
-                                                    <i class="far fa-minus-square fa-lg mr-2"></i>
-                                                    Eliminar
-                                                </a>
+                                                <?php $producto->nombre  = str_replace(" ", "_", $producto->nombre); ?>
+                                                 <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalElim{{$producto->nombre}}{{$producto->idProducto}}">
+                                <i class="far fa-minus-square fa-lg mr-2"></i>
+                                Eliminar
+                            </button>
+    
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalElim{{$producto->nombre}}{{$producto->idProducto}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Eliminar Producto</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                            <form action="{{action('ProductosController@destroy')}}" method="POST">
+                                @csrf
+                            <div class="form-group">
+                                <?php $producto->nombre  = str_replace("_", " ", $producto->nombre); ?>
+                                <label for="nombre">¿Estas seguro que deseas borrar el producto {{$producto->nombre}}?</label>
+                                <input type="text" name="idProducto" value="{{$producto->idProducto}}" class="form-control" style="display:none">
+                                <input type="text" class="form-control" name="nombre" id="nombre" value="{{$producto->nombre}}" placeholder="" style="display:none">    
+                            </div>
+        
+        
+                            <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-danger">Borrar</button>
+                            </form>
+                            </div>
+                            
+                            </div>
+                        </div>
+                    </div>
                                             </td>
                                         </tr>
                                     @endforeach

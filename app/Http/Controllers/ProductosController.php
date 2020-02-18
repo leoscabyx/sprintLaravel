@@ -42,16 +42,19 @@ class ProductosController extends Controller
     {
         $productoNuevo = new Producto();
 
-        $ruta = $request->file("imagen")->store("public");
-        $nombreArchivo = basename($ruta);
+        if(isset($request["imagen"])){
+            $ruta = $request->file("imagen")->store("public");
+            $nombreArchivo = basename($ruta);
+            $productoNuevo->imagen = $nombreArchivo;
+        }else{
+            $productoNuevo->imagen = "sinImagen.jpg";
+        }
 
         $productoNuevo->nombre = $request["nombre"];
         $productoNuevo->precio = $request["precio"];
         $productoNuevo->idCategoria = $request["categoria"];
         $productoNuevo->descripcion = $request["descripcion"];
         $productoNuevo->estado = $request["estado"];
-        $productoNuevo->imagen = $nombreArchivo;
-
 
 
 
@@ -91,9 +94,27 @@ class ProductosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $prodEditado = Producto::find($request["idProducto"]);
+
+        if(isset($request["imagen"])){
+            $ruta = $request->file("imagen")->store("public");
+            $nombreArchivo = basename($ruta);
+            $prodEditado->imagen = $nombreArchivo;
+        }
+
+        $prodEditado->nombre = $request["nombre"];
+        $prodEditado->precio = $request["precio"];
+        $prodEditado->idCategoria = $request["categoria"];
+        $prodEditado->descripcion = $request["descripcion"];
+        $prodEditado->estado = $request["estado"];
+        
+
+        $prodEditado->save();
+
+        
+        return redirect("/adminProductos");
     }
 
     /**
@@ -102,8 +123,11 @@ class ProductosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $prodBorrado = Producto::find($request["idProducto"]);
+
+        $prodBorrado->delete();
+        return redirect("/adminProductos");
     }
 }
