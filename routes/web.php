@@ -29,7 +29,7 @@ Route::get('/contacto', function(){
   //  return view('comunicarse');
 //});
 
-Route::get('/productos', 'ProductosController@index');
+Route::get('/productos', 'ProductosController@listadoProductos');
 
 Route::get('/adminProductos', 'ProductosController@index');
 
