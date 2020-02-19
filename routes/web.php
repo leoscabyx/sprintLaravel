@@ -19,6 +19,15 @@ Route::get('/admin', function () {
     return view('admin');
 });
 
+Route::get('/faq', function(){
+    return view('faq');
+});
+Route::get('/contacto', function(){
+    return view('contacto');
+});
+//Route::post('/contacto', function(){
+  //  return view('comunicarse');
+//});
 
 Route::get('/productos', 'ProductosController@index');
 
@@ -42,3 +51,7 @@ Route::post('/adminProductos', 'ProductosController@store');
 Route::post('/editProductos', 'ProductosController@update');
 
 Route::post('/borrarProductos', 'ProductosController@destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

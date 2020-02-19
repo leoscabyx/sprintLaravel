@@ -37,7 +37,7 @@
                         <a class="nav-link text-white" href="/contacto">Contacto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/registro">Registro</a>
+                        <a class="nav-link text-white" href="/register">Registro</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/login">Login</a>
