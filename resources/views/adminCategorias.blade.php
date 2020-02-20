@@ -12,9 +12,7 @@
                         <hr class="bg-color1">
                         <div class="row">
                         <div class="col-md-12">
-                        @if ( count( $categorias ) == 0 )
-                            <div class="alert alert-warning">No se han encontrado categorias</div>
-                        @else
+                        
                         <table class="table table-bordered table-hover table-striped">
                             <thead class="thead-dark">
                             <tr>
@@ -138,7 +136,7 @@
                         @endforeach
                             </tbody>
                         </table>
-                        @endif
+                        
                         </div>
                         
 

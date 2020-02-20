@@ -14,6 +14,14 @@ class ProductosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function listadoProductos()
+    {
+        //
+        $productos = Producto::paginate(10);
+        return view('productos', [ 'productos' => $productos]);
+    }
+
     public function index()
     {
         //
