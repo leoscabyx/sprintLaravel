@@ -6,31 +6,22 @@
         <section id="bienvenida" class="container-fluid">
 
                 
-    <div class="row">
-        <div class="col-md-8 offset-md-2  py-5">
-            
-            
-            <div class= "row">
-                    <div class="col-md-6 py-3 d-flex flex-md-column justify-content-right align-items-center">
-                        <h1 class="ff_titulo text-white">hope you feel beautiful with #cocolo</h1>
+            <div class="row">
+                <div class="col-md-8 offset-md-2  py-5">
+                    
+                    
+                    <div class= "row">
+                            <div class="col-md-6 py-3 d-flex flex-md-column justify-content-right align-items-center">
+                                <h1 class="ff_titulo text-white">hope you feel beautiful with #cocolo</h1>
+                            </div>
+                            <div class="col-md-6 text-center py-3">
+                                    <img class="img-fluid logo" src="https://instagram.faep9-1.fna.fbcdn.net/vp/2ae8249ed6e76a4df5b5498871024f5b/5E5C3D6D/t51.2885-19/s150x150/62624376_2233291810094827_6461921087314722816_n.jpg?_nc_ht=instagram.faep9-1.fna.fbcdn.net" alt="Logo Principial">
+                            </div>
                     </div>
-                    <div class="col-md-6 text-center py-3">
-                            <img class="img-fluid logo" src="https://instagram.faep9-1.fna.fbcdn.net/vp/2ae8249ed6e76a4df5b5498871024f5b/5E5C3D6D/t51.2885-19/s150x150/62624376_2233291810094827_6461921087314722816_n.jpg?_nc_ht=instagram.faep9-1.fna.fbcdn.net" alt="Logo Principial">
-                    </div>
+                        
+                    
                 </div>
-                <? if(!isset($_SESSION["emailUsuario"])){ ?>
-                <div class="row">
-                    <div class="col-md-6 text-center mt-3">
-                        <a class="btn bg-color1 text-white d-block" href="/registro">Registro</a>
-                    </div>
-                <div class="col-md-6 text-center mt-3">
-                        <a class="btn bg-color1 text-white d-block" href="/login">Login</a>
-                    </div>
-                </div>
-                <?}?>
             </div>
-        </div>
-    </div>
 
 
     </section>

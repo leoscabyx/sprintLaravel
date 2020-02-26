@@ -15,8 +15,29 @@ Route::get('/', function () {
     return view('inicio');
 });
 
-Route::get('/admin', function () {
-    return view('admin');
+
+Route::middleware(['auth', 'admin'])->group(function(){
+    Route::get('/admin', function () {
+        return view('admin');
+    });
+
+
+    Route::get('/adminCategorias', 'CategoriasController@index');
+
+    Route::get('/adminProductos', 'ProductosController@index');
+
+    Route::get('/adminUsuarios', 'UsuariosController@index');
+});
+
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('/perfil', function () {
+        return view('perfil');
+    });
+});
+
+Route::get('/accesoRestringido', function(){
+    return view('accesoRestringido');
 });
 
 Route::get('/faq', function(){
@@ -31,14 +52,9 @@ Route::get('/contacto', function(){
 
 Route::get('/productos', 'ProductosController@listadoProductos');
 
-Route::get('/adminProductos', 'ProductosController@index');
-
 Route::get('/producto/{id}', 'ProductosController@show');
 
-
 Route::get('/categorias', 'CategoriasController@index');
-
-Route::get('/adminCategorias', 'CategoriasController@index');
 
 Route::post('/adminCategorias', 'CategoriasController@store');
 
@@ -51,6 +67,12 @@ Route::post('/adminProductos', 'ProductosController@store');
 Route::post('/editProductos', 'ProductosController@update');
 
 Route::post('/borrarProductos', 'ProductosController@destroy');
+
+Route::post('/adminUsuarios', 'UsuariosController@store');
+
+Route::post('/editUsuarios', 'UsuariosController@update');
+
+Route::post('/borrarUsuarios', 'UsuariosController@destroy');
 
 Auth::routes();
 

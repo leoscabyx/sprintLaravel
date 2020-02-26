@@ -29,22 +29,21 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/faq">F.A.Q.</a>
                     </li>
+                    @if(Auth::user() != null)
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/perfil">Perfil</a>
-                    
+                    @endif
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/contacto">Contacto</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="/register">Registro</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="/login">Login</a>
-                    </li>
+                    @if(Auth::user() != null )
+                    @if(Auth::user()->tipoUsuario == "admin")
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/admin">Admin</a>
                     </li>
+                    @endif
+                    @endif
                     <li>
                         
                     </li>
@@ -61,11 +60,11 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Ingresar') }}</a>
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
                             </li>
                         @endif
                     @else
