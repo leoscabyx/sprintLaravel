@@ -55,7 +55,7 @@
                 
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="carro-compra.php"><ion-icon name="cart" size=""></ion-icon></a>
+                        <a class="nav-link text-white" href="/carrito"><ion-icon name="cart" size=""></ion-icon></a>
                     </li>
                     <!-- Authentication Links -->
                     @guest

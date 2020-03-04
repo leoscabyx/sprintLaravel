@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('inicio');
 });
 
+Route::get('/carrito', 'CarritoController@index');
 
 Route::middleware(['auth', 'admin'])->group(function(){
     Route::get('/admin', function () {
