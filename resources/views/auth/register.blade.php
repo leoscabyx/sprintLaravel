@@ -125,7 +125,7 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                                <input type="text" name="tipoUsuario" value="miembro" class="form-control" style="display:none">
+                                
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -133,6 +133,7 @@
                                 @enderror
                             </div>
                         </div>
+                        <input type="hidden" name="tipoUsuario" value="2" class="form-control" >
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>

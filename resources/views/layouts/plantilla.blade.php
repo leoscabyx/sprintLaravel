@@ -38,7 +38,7 @@
                         <a class="nav-link text-white" href="/contacto">Contacto</a>
                     </li>
                     @if(Auth::user() != null )
-                    @if(Auth::user()->tipoUsuario == "admin")
+                    @if(Auth::user()->idTipoUsuario == 1)
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/admin">Admin</a>
                     </li>
