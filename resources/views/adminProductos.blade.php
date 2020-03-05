@@ -107,7 +107,8 @@
                                             <td>{{ $producto->descripcion }}</td>
                                             
                                             <td>
-                                            <img src="storage/{{$producto->imagen}}" style="width:50px; height:50px;" class="img-thumbnail" alt="imagenDeProducto">
+                                            {{--storage/$producto->imagen--}}
+                                            <img src="{{asset('/img/' . $producto->imagen)  }}" style="width:50px; height:50px;" class="img-thumbnail" alt="imagenDeProducto">
                                             </td>
                                             <td>
                                                 <?php $producto->nombre  = str_replace(" ", "_", $producto->nombre); ?>

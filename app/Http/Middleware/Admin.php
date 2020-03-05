@@ -20,7 +20,7 @@ class Admin
     {
         $user = Auth::user();
 
-        if($user->tipoUsuario == 'admin'){
+        if($user->idTipoUsuario == 1){
             return $next($request);
         }
         else {

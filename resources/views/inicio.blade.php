@@ -15,7 +15,7 @@
                                 <h1 class="ff_titulo text-white">hope you feel beautiful with #cocolo</h1>
                             </div>
                             <div class="col-md-6 text-center py-3">
-                                    <img class="img-fluid logo" src="https://instagram.faep9-1.fna.fbcdn.net/vp/2ae8249ed6e76a4df5b5498871024f5b/5E5C3D6D/t51.2885-19/s150x150/62624376_2233291810094827_6461921087314722816_n.jpg?_nc_ht=instagram.faep9-1.fna.fbcdn.net" alt="Logo Principial">
+                                    <img class="img-fluid logo" src="{{ asset('img/logo.jpg') }}" alt="Logo Principial">
                             </div>
                     </div>
                         
