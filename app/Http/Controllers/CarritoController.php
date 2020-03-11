@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Pedido;
+use App\User;
 use App\Producto;
-use App\Categoria;
 
 
 class CarritoController extends Controller
@@ -18,9 +19,10 @@ class CarritoController extends Controller
     public function index()
     {
         //
+        $pedidos = Pedido::paginate(10);
+        $usuarios = User::paginate(10);
         $productos = Producto::paginate(10);
-        $categorias = Categoria::paginate(10);
-        return view('carrito', [ 'productos' => $productos, 'categorias' => $categorias]);
+        return view('carrito', [ 'pedidos' => $pedidos, 'usuarios' => $usuarios, 'productos' => $productos]);
     }
 
     /**
@@ -42,6 +44,18 @@ class CarritoController extends Controller
     public function store(Request $request)
     {
         //
+        $pedidoNuevo = new Pedido();
+
+        $pedidoNuevo->idUsuario = $request["idUsuario"];
+        $pedidoNuevo->cantidad = $request["cantidad"];
+        $pedidoNuevo->idProducto = $request["idProducto"];
+        $pedidoNuevo->estatus = 1;
+
+
+
+        $pedidoNuevo->save();
+
+        return redirect("/carrito");
     }
 
     /**

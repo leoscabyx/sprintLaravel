@@ -85,7 +85,7 @@ class UsuariosController extends Controller
 
         $usuarioEditado->surname = $request["surname"];
 
-        $usuarioEditado->tipoUsuario = $request["tipoUsuario"];
+        $usuarioEditado->idTipoUsuario = $request["tipoUsuario"];
 
         $usuarioEditado->save();
 

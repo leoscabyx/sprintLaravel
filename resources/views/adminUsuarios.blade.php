@@ -57,8 +57,8 @@
                                         <label for="nombre">Tipo de usuario</label>
                                         <select id="inputState" class="form-control" name="tipoUsuario">
 
-                                            <option selected value="miembro">Miembro</option>
-                                            <option value="admin">Admin</option>
+                                            <option selected value="2">Cliente</option>
+                                            <option value="1">Admin</option>
 
                                           </select>
                                     </div>
@@ -90,7 +90,11 @@
                                 <td>{{$usuario->name}}</td>
                                 <td>{{$usuario->surname}}</td>
                                 <td>{{$usuario->email}}</td>
-                                <td>{{$usuario->tipoUsuario}}</td>
+                                <td>@if ($usuario->idTipoUsuario == 1)
+                                        Admin
+                                @else
+                                       Cliente
+                                @endif</td>
                                 <td>
                                     <?php $usuario->name  = str_replace(" ", "_", $usuario->name); ?>
                                     <?php $usuario->surname  = str_replace(" ", "_", $usuario->surname); ?>
@@ -128,14 +132,14 @@
                                 <label for="nombre">Tipo de usuario</label>
                                 <select id="inputState" class="form-control" name="tipoUsuario">
                                         
-                                    @if ($usuario->tipoUsuario == "miembro")
+                                    @if ($usuario->idTipoUsuario == 2)
 
-                                            <option selected value="miembro">Miembro</option>
-                                            <option value="admin">Admin</option>
+                                            <option selected value="2">Cliente</option>
+                                            <option value="1">Admin</option>
 
                                             @else
-                                            <option value="miembro">Miembro</option>
-                                            <option selected value="admin">Admin</option>
+                                            <option value="2">Cliente</option>
+                                            <option selected value="1">Admin</option>
                                             @endif
                                   </select>
                             </div>

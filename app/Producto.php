@@ -11,11 +11,7 @@ class Producto extends Model
     protected $primaryKey = 'idProducto';
     public $timestamps = false;
 
-    
-    public function getMarca()
-    {
-        return $this->belongsTo('App\Marca', 'idMarca', 'idMarca');
-    }
+
     public function getCategoria()
     {
         return $this->belongsTo('App\Categoria', 'idCategoria', 'idCategoria');

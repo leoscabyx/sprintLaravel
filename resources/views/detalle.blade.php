@@ -20,15 +20,17 @@
                                     <!--<button class="btn bg-color1 text-white"><i class="fas fa-cart-arrow-down"></i></button>
                                     <button class="btn bg-color1 text-white"><i class="fas fa-cart-plus"></i></button>-->
                                     
-                                    <form class="my-2" action="">
-                                        
-                                            <select class="form-control">
+                                    <form class="my-2" action="" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                            <select name="cantidad" class="form-control">
                                                 <option value="1">1 unidad</option>
                                                 <option value="2">2 unidad</option>
                                                 <option value="3">3 unidad</option>
                                                 <option value="4">4 unidad</option>
                                                 <option value="5">5 unidad</option>
                                             </select>
+                                            <input type="hidden" name="idUsuario" value="{{Auth::user()->idTipoUsuario}}">
+                                            <input type="hidden" name="idProducto" value="{{$producto->idProducto}}">
                                             <button class="d-block btn bg-dark text-white my-3" type="submit">Agregar a Pedido</button>
                                             
                                     </form>
