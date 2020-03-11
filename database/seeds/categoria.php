@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,7 @@ class categoria extends Seeder
     {
         //
         DB::table('categorias')->insert([
-            'nombre' => 'Pulseras',
+            'nombre' => 'Pulseras'
             
         ]);
     }
