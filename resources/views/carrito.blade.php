@@ -39,6 +39,7 @@
                                             <th>Sub-Total</th>
 
                                             <th>Imagen</th>
+                                            <th></th>
                                             
                                         </tr>
                                         
@@ -58,6 +59,42 @@
                                             <td>
                                             <img src="{{ asset('img/' . $pedido->getProducto->imagen)}}" style="width:50px; height:50px;" class="img-thumbnail" alt="imagenDeProducto">
                                             </td>
+                                            <td>
+                                                    <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalElim{{$pedido->idPedido}}">
+                                <i class="far fa-minus-square fa-lg mr-2"></i>
+                                Eliminar
+                            </button>
+    
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalElim{{$pedido->idPedido}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Eliminar Pedido</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                            <form action="{{action('CarritoController@destroy')}}" method="POST">
+                                @csrf
+                            <div class="form-group">
+                                <label for="nombre">¿Estas seguro que deseas borrar el item {{$pedido->getProducto->nombre}}?</label>
+                                <input type="text" name="idPedido" value="{{$pedido->idPedido}}" class="form-control" style="display:none">
+                                    
+                            </div>
+        
+        
+                            <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-danger">Borrar</button>
+                            </form>
+                            </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+                                </td>
 
                                         </tr>
                                     @endforeach
@@ -68,13 +105,15 @@
                 </div>
                 <div class="row my-3">
                     <form class="col-sm-12" action="" method="post">
+                    @csrf
+                    <input type="hidden" name="idUsuario" value="{{Auth::user()->id}}">
                             <button class="col-md-4 offset-md-4 btn bg-dark text-white " type="submit">Confirmar</button>
                     </form>
                     
                 </div>
                 <div class="row my-3">
                     <div class="col-md-12">
-                    {{ $productos->links() }}
+                    {{ $pedidos->links() }}
                     </div>
                 </div> 
                             @endif

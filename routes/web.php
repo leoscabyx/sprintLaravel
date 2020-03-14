@@ -17,7 +17,12 @@ Route::get('/', function () {
 
 Route::get('/carrito', 'CarritoController@index');
 
+Route::post('/carrito', 'CarritoController@update');
+
+Route::post('/borrarItem', 'CarritoController@destroy');
+
 Route::post('/producto/{id}', 'CarritoController@store');
+
 
 Route::middleware(['auth', 'admin'])->group(function(){
     Route::get('/admin', function () {
@@ -30,6 +35,9 @@ Route::middleware(['auth', 'admin'])->group(function(){
     Route::get('/adminProductos', 'ProductosController@index');
 
     Route::get('/adminUsuarios', 'UsuariosController@index');
+
+    Route::get('/adminPedidos', 'CarritoController@index');
+
 });
 
 

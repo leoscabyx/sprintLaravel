@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Pedido;
 use App\User;
 use App\Producto;
+use Auth;
 
 
 class CarritoController extends Controller
@@ -19,10 +20,17 @@ class CarritoController extends Controller
     public function index()
     {
         //
-        $pedidos = Pedido::paginate(10);
-        $usuarios = User::paginate(10);
+        
+        //$usuarios = User::paginate(10);
         $productos = Producto::paginate(10);
-        return view('carrito', [ 'pedidos' => $pedidos, 'usuarios' => $usuarios, 'productos' => $productos]);
+        if(Auth::user()->idTipoUsuario == 1){
+            $pedidos = Pedido::paginate(10);
+            return view('adminPedidos');
+        }else{
+            $pedidos = Pedido::where('estatus', '=', 1)->paginate(10);
+            return view('carrito', [ 'pedidos' => $pedidos, 'productos' => $productos]);
+        }
+        
     }
 
     /**
@@ -44,18 +52,22 @@ class CarritoController extends Controller
     public function store(Request $request)
     {
         //
+        
         $pedidoNuevo = new Pedido();
-
+        
+        
         $pedidoNuevo->idUsuario = $request["idUsuario"];
         $pedidoNuevo->cantidad = $request["cantidad"];
         $pedidoNuevo->idProducto = $request["idProducto"];
         $pedidoNuevo->estatus = 1;
-
+        $pedidoNuevo->numeroVenta = 0;
 
 
         $pedidoNuevo->save();
 
         return redirect("/carrito");
+        
+        
     }
 
     /**
@@ -87,9 +99,30 @@ class CarritoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+        $pedidos = Pedido::where('estatus','=',1)->where('idUsuario','=', $request["idUsuario"])->orderBy('numeroVenta', 'desc')->get();
+
+        //obtener el ultimo numero de pedido 
+        $numeroVenta = Pedido::orderBy('numeroVenta', 'desc')->get();
+        //$numeroVenta = 0;
+        //dd($numeroVenta[0]['numeroVenta']);
+        if(count($numeroVenta) == 0){
+            $numeroVenta = 1;
+        }else{
+            $numeroVenta = $numeroVenta[0]['numeroVenta'] + 1;
+        }
+        foreach($pedidos as $p){
+            $p->numeroVenta = $numeroVenta;
+            $p->estatus = 2;
+        
+        
+
+            $p->save();
+        }
+
+        return redirect("/carrito");
     }
 
     /**
@@ -98,8 +131,14 @@ class CarritoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
+        $itemCarrito = Pedido::find($request["idPedido"]);
+
+        $itemCarrito->delete();
+        return redirect("/carrito");
     }
+
+    
 }
