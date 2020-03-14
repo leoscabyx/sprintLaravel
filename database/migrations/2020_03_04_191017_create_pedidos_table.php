@@ -19,6 +19,7 @@ class CreatePedidosTable extends Migration
             $table->bigInteger('idProducto')->unsigned();
             $table->bigInteger('cantidad');
             $table->tinyInteger('estatus');
+            $table->tinyInteger('numeroVenta');
             //$table->timestamps();
         });
 
