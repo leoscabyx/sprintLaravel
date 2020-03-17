@@ -12,6 +12,8 @@ use Auth;
 
 class CarritoController extends Controller
 {
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -24,8 +26,9 @@ class CarritoController extends Controller
         //$usuarios = User::paginate(10);
         $productos = Producto::paginate(10);
         if(Auth::user()->idTipoUsuario == 1){
-            $pedidos = Pedido::paginate(10);
-            return view('adminPedidos');
+            $pedidos = Pedido::selectRaw('numeroVenta, count(*) as cantidad')->groupBy('numeroVenta')->paginate(5);
+            
+            return view('adminPedidos', [ 'pedidos' => $pedidos ]);
         }else{
             $pedidos = Pedido::where('estatus', '=', 1)->paginate(10);
             return view('carrito', [ 'pedidos' => $pedidos, 'productos' => $productos]);
@@ -79,6 +82,8 @@ class CarritoController extends Controller
     public function show($id)
     {
         //
+        $pedido = Pedido::where('numeroVenta', '=', $id)->get();
+        return view('detallePedido', [ 'pedido' => $pedido ]);
     }
 
     /**

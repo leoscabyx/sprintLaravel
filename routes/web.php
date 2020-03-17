@@ -23,6 +23,8 @@ Route::post('/borrarItem', 'CarritoController@destroy');
 
 Route::post('/producto/{id}', 'CarritoController@store');
 
+Route::get('/pedido/{id}', 'CarritoController@show');
+
 
 Route::middleware(['auth', 'admin'])->group(function(){
     Route::get('/admin', function () {

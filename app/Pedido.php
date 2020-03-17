@@ -12,7 +12,7 @@ class Pedido extends Model
 
     public function getUsuario()
     {
-        return $this->belongsTo('App\User', 'idUsuario', 'idUsuario');
+        return $this->belongsTo('App\User', 'idUsuario', 'id');
     }
 
     public function getProducto()
