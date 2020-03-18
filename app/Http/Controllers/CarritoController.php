@@ -26,7 +26,8 @@ class CarritoController extends Controller
         //$usuarios = User::paginate(10);
         $productos = Producto::paginate(10);
         if(Auth::user()->idTipoUsuario == 1){
-            $pedidos = Pedido::selectRaw('numeroVenta, count(*) as cantidad')->groupBy('numeroVenta')->paginate(5);
+            //$pedidos = Pedido::selectRaw('numeroVenta, count(*) as cantidad')->groupBy('numeroVenta')->paginate(5);
+            $pedidos = Pedido::selectRaw('numeroVenta, count(*) as cantidad')->where('estatus', '=', 2)->groupBy('numeroVenta')->paginate(5);
             
             return view('adminPedidos', [ 'pedidos' => $pedidos ]);
         }else{

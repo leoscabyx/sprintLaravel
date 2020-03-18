@@ -1,6 +1,6 @@
 @extends('layouts.plantilla')
 
-    @section('title', 'Categorias')
+    @section('title', 'AdminPedidos')
 
     @section('main')
 

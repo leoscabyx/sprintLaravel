@@ -29,7 +29,7 @@
                                                 <option value="4">4 unidad</option>
                                                 <option value="5">5 unidad</option>
                                             </select>
-                                            <input type="hidden" name="idUsuario" value="{{Auth::user()->idTipoUsuario}}">
+                                            <input type="hidden" name="idUsuario" value="{{Auth::user()->id}}">
                                             <input type="hidden" name="idProducto" value="{{$producto->idProducto}}">
                                             <button class="d-block btn bg-dark text-white my-3" type="submit">Agregar a Pedido</button>
                                             
