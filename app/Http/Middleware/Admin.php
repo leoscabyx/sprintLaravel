@@ -18,14 +18,15 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        $user = Auth::user();
+        //$user = Auth::user();
 
-        if($user->idTipoUsuario == 1){
+        if(Auth::user()->idTipoUsuario == 1){
             return $next($request);
         }
         else {
             return redirect('/accesoRestringido');
         }
+        
        
     }
 }

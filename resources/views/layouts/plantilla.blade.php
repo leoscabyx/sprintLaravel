@@ -54,9 +54,14 @@
 
                 
                 <ul class="navbar-nav ml-auto">
+                    @if(Auth::user() != null )
+                    @if(Auth::user()->idTipoUsuario == 2)
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/carrito"><ion-icon name="cart" size=""></ion-icon></a>
                     </li>
+                    @endif
+                    @endif
+                    
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
