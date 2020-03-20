@@ -91,4 +91,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/productos', 'ProductosController@listadoProductos');
+
