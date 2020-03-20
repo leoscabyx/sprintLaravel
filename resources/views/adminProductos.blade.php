@@ -17,6 +17,7 @@
                 <div class="col-md-12 py-5">
                         <h2 class="text-uppercase ff_titulo">NUESTROS PRODUCTOS <strong class="color1">COCOLO!</strong></h2>
                         <hr class="bg-color1">
+                        {{--dd($categorias)--}}
                         <div class="row">
                         <div class="col-md-12">
                         <table class="table table-bordered table-stripped table-hover">
@@ -61,6 +62,7 @@
                                     <div class="form-group">
                                         <label for="nombre">Categoria</label>
                                         <select id="inputState" class="form-control" name="categoria">
+                                        
                                             @foreach ($categorias as $categoria)
                                                 
                                             <option value="{{ $categoria->idCategoria }}" >{{ $categoria->nombre }}</option>
@@ -114,13 +116,13 @@
                                                 <?php $producto->nombre  = str_replace(" ", "_", $producto->nombre); ?>
                                                 <?php $producto->descripcion  = str_replace(" ", "_", $producto->descripcion); ?>
                                                  <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalMod{{ $producto->nombre }}{{$producto->precio}}{{$producto->idProducto}}{{ $producto->descripcion }}{{ $producto->getCategoria->nombre }}">
+                                        <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalMod{{$producto->idProducto}}">
                                              <i class="far fa-edit fa-lg mr-2"></i>
                                                     Modificar
                                         </button>
     
                     <!-- Modal -->
-                            <div class="modal fade" id="exampleModalMod{{ $producto->nombre }}{{$producto->precio}}{{$producto->idProducto}}{{ $producto->descripcion }}{{ $producto->getCategoria->nombre }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModalMod{{$producto->idProducto}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">

@@ -26,7 +26,7 @@ class ProductosController extends Controller
     {
         //
         $productos = Producto::paginate(10);
-        $categorias = Categoria::paginate(10);
+        $categorias = Categoria::all();
         return view('adminProductos', [ 'productos' => $productos, 'categorias' => $categorias]);
     }
 
@@ -50,12 +50,21 @@ class ProductosController extends Controller
     {
         $productoNuevo = new Producto();
 
-        if(isset($request["imagen"])){
+        /*if(isset($request["imagen"])){
             $ruta = $request->file("imagen")->store("public");
             $nombreArchivo = basename($ruta);
             $productoNuevo->imagen = $nombreArchivo;
         }else{
             $productoNuevo->imagen = "sinImagen.jpg";
+        }*/
+
+        $imageName = 'noDisponible.jpg';
+        if( $request->file('imagen') ) {
+            //$imageName = time().'.'.request()->prdImagen->getClientOriginalExtension();
+            $imagen = $request->file('imagen');
+            //$imagen->getClientOriginalExtension();
+            $imageName = $request->imagen->getClientOriginalName();
+            $request->imagen->move(public_path('img/'), $imageName);
         }
 
         $productoNuevo->nombre = $request["nombre"];
@@ -63,6 +72,7 @@ class ProductosController extends Controller
         $productoNuevo->idCategoria = $request["categoria"];
         $productoNuevo->descripcion = $request["descripcion"];
         $productoNuevo->estado = $request["estado"];
+        $productoNuevo->imagen = $imageName;
 
 
 
@@ -106,10 +116,19 @@ class ProductosController extends Controller
     {
         $prodEditado = Producto::find($request["idProducto"]);
 
-        if(isset($request["imagen"])){
+        /*if(isset($request["imagen"])){
             $ruta = $request->file("imagen")->store("public");
             $nombreArchivo = basename($ruta);
             $prodEditado->imagen = $nombreArchivo;
+        }*/
+
+        $imageName = 'noDisponible.jpg';
+        if( $request->file('imagen') ) {
+            //$imageName = time().'.'.request()->prdImagen->getClientOriginalExtension();
+            $imagen = $request->file('imagen');
+            //$imagen->getClientOriginalExtension();
+            $imageName = $request->imagen->getClientOriginalName();
+            $request->imagen->move(public_path('img/'), $imageName);
         }
 
         $prodEditado->nombre = $request["nombre"];
@@ -117,7 +136,7 @@ class ProductosController extends Controller
         $prodEditado->idCategoria = $request["categoria"];
         $prodEditado->descripcion = $request["descripcion"];
         $prodEditado->estado = $request["estado"];
-        
+        $prodEditado->imagen = $imageName;
 
         $prodEditado->save();
 
