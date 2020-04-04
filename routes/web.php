@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('inicio');
 });
 
-Route::get('/carrito', 'CarritoController@index');
+Route::get('/carrito', 'CarritoController@index')->middleware('auth');
 
 Route::post('/carrito', 'CarritoController@update');
 
@@ -51,14 +51,16 @@ Route::middleware(['auth'])->group(function(){
 
 Route::get('/accesoRestringido', function(){
     return view('accesoRestringido');
-});
+})->middleware('auth');
 
 Route::get('/faq', function(){
     return view('faq');
 });
+
 Route::get('/contacto', function(){
     return view('contacto');
 });
+
 //Route::post('/contacto', function(){
   //  return view('comunicarse');
 //});
@@ -87,8 +89,10 @@ Route::post('/editUsuarios', 'UsuariosController@update');
 
 Route::post('/borrarUsuarios', 'UsuariosController@destroy');
 
+// Creado automaticamente al ejecutar la autenticacion de laravel predefinida usando el php artisan make:auth
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
 
 

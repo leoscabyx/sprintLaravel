@@ -18,7 +18,8 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+            // si el usuario ya esta logueado e intento entrar a login o registrer
+            return redirect('/perfil');
         }
 
         return $next($request);
